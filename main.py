@@ -28,12 +28,19 @@ def get_anime_names(indices):
 
 # Recommender(anime_name) => List of Recommended Anime
 def recommender(anime_name, data_matrix, model, n_recommendations):
+    n_recommendations += 1  # Since I skipped the first recommendation
     id = get_anime_id(anime_name)
-    print(f"Suggested anime if you\'ve watched {df_anime['name'][id]}")
+    print(f"Suggested anime if you\'ve watched {df_anime['name'][id]}:")
     distances, indices = model.kneighbors(
         data_matrix[id], n_neighbors=n_recommendations)
     recommended = get_anime_names(indices)
-    print("\n".join(recommended))
+    print("\n".join([f"{i + 1}. {anime}" for i, anime in enumerate(recommended)]))
 
 
-recommender('Fullmetal Alchemist: Brotherhood', matrix, model_knn, 20)
+def main():
+    anime_name = input('Enter the name of an anime: ')
+    recommender(anime_name, matrix, model_knn, 20)
+
+
+if __name__ == '__main__':
+    main()
