@@ -38,8 +38,9 @@ def recommender(anime_name, data_matrix, model, n_recommendations):
 
 
 def main():
+    print("Anime Recommender")
     anime_name = input('Enter the name of an anime: ')
-    recommender(anime_name, matrix, model_knn, 20)
+    recommender(anime_name, matrix, model_knn, 15)
 
 
 if __name__ == '__main__':
